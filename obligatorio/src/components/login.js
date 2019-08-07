@@ -19,14 +19,19 @@ class Login extends React.Component{
     render() {
         return(
             <div>
-                <label>Usuario: </label>
-                <input type='text' placeholder='Ingrese su nombre de usuario...' />
-                <label>Contraseña: </label>
-                <input type='password' placeholder='Ingrese su contraseña...' />
-                <button onClick={this.clickRegistro}>No tengo cuenta :(</button>
+                <form>
+                    <label htmlFor='user'>Usuario: </label>
+                    <input type='text' name='user' placeholder='Ingrese su nombre de usuario...' />
+                    <br/>
+                    <label htmlFor='pass'>Contraseña: </label>
+                    <input type='password' name='pass' placeholder='Ingrese su contraseña...' />
+                    <br/>
+                    <input type='submit' value='Ingresar' />
+                </form>
+                <button onClick={this.clickRegistro()}>No tengo cuenta :(</button>
             </div>
         );
     }
 }
 
-export default Login
+export default Login;
