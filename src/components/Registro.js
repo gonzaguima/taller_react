@@ -4,6 +4,22 @@ import "../App.css";
 
 //componente registro, donde se crea un nuevo usuario
 class Registro extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      emailSignup: '',
+      nameSignup: '',
+      passSignup: '',
+      passRepSignup: ''
+    }
+  }
+
+  handleChange = event => {
+    const name = event.target.name;
+    this.setState({ [name]: event.target.value });
+  };
+
   return() {
     return (
       <div className="d-flex flex-column justify-content-center mt-5 pt-5">
@@ -15,6 +31,7 @@ class Registro extends React.Component {
               type="email"
               className="form-control"
               id="emailSignup"
+              name="emailSignup"
               placeholder="Ingrese su Email"
             />
           </div>
@@ -25,6 +42,7 @@ class Registro extends React.Component {
               type="input"
               className="form-control"
               id="nameSignup"
+              name="nameSignup"
               placeholder="Ingrese su Nombre completo"
             />
           </div>
