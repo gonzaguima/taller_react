@@ -10,6 +10,7 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 //import de router
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Equipo from "./components/Equipos";
 
 //componente principal
 class App extends React.Component {
@@ -24,6 +25,7 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/Registro" component={Registro} />
             {/* <Route exact path="/Login" component={Login} /> */}
+            <Route exact path="/AgregarEquipo" component={Equipo} />
           </Switch>
           {/* footer */}
           <Footer />
