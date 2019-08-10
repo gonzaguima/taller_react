@@ -10,31 +10,39 @@ class Registro extends React.Component {
     super(props);
 
     this.state = {
-      emailSignup: '',
-      nameSignup: '',
-      passSignup: '',
-      passRepSignup: ''
+      email: '',
+      name: '',
+      password: '',
+      passRep: ''
     }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.registrarUsuario = this.registrarUsuario.bind(this);
   }
 
   //habilita a cambiar el estado.
-  handleChange = event => {
-    const name = event.target.name;
-    this.setState({ [name]: event.target.value });
-  };
 
-  onSubmit = event => {
+  handleChange = event => {
+    this.setState({[event.target.name]: event.target.value
+    });
+  }
+
+  registrarUsuario = event => {
     event.preventDefault();
     const user = this.state;
-    if (user.passSignup === user.passRepSignup) {
+    console.log(user);
+
+    if (user.password === user.passRep) {
+      delete user.passRep;
+    console.log(user);
       registroUser(user).then(result => {
         alert('ESSITOO!!')
         console.log(result);
       }).catch(err => {
         alert('Not today')
-        console.log(err);
       })
     } else {
+      console.log("contraseña distinta");
       return <Registro />
     }
   }
@@ -42,47 +50,57 @@ class Registro extends React.Component {
   render() {
     return (
       <div className="d-flex flex-column justify-content-center mt-5 pt-5">
-        <form className="m-auto w-50">
+        <form className="m-auto w-50" onSubmit={this.registrarUsuario}>
           <div className="form-group">
-            <label htmlFor="emailSignup">Dirección de Email</label>
+            <label htmlFor="email">Dirección de Email</label>
             {/* input email signup */}
             <input
               type="email"
               className="form-control"
-              id="emailSignup"
-              name="emailSignup"
+              id="email"
+              name="email"
+              value = {this.state.email}
               placeholder="Ingrese su Email"
+              onChange={this.handleChange.bind(this)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="nameSignup">Nombre y Apellido</label>
+            <label htmlFor="name">Nombre y Apellido</label>
             {/* input nombre signup */}
             <input
               type="input"
               className="form-control"
-              id="nameSignup"
-              name="nameSignup"
+              id="name"
+              name="name"
+              value = {this.state.name}
               placeholder="Ingrese su Nombre completo"
+              onChange={this.handleChange.bind(this)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="passSignup">Contraseña</label>
+            <label htmlFor="password">Contraseña</label>
             {/* input pass signup */}
             <input
               type="password"
               className="form-control"
-              id="passSignup"
+              id="password"
+              name="password"
+              value = {this.state.password}
               placeholder="Cree una nueva Contraseña"
+              onChange={this.handleChange.bind(this)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="passRepSignup">Repita la Contraseña</label>
+            <label htmlFor="passRep">Repita la Contraseña</label>
             {/* input pass signup */}
             <input
               type="password"
               className="form-control"
-              id="passRepSignup"
+              id="passRep"
+              name = "passRep"
+              value = {this.state.passRep}
               placeholder="Ingrese de nuevo su contraseña"
+              onChange={this.handleChange.bind(this)}
             />
           </div>
           {/* boton enviar signup */}
