@@ -1,4 +1,4 @@
-import { ACTIONS } from "../../constants";
+import { ACTIONS } from "./../../constants";
 
 export default function taskReducer(state = [], action) {
     switch (action.type) {

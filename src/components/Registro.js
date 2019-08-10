@@ -1,10 +1,12 @@
 import React from "react";
 //import css
 import "../App.css";
+//import services
+import { registroUser } from './../services'
 
 //componente registro, donde se crea un nuevo usuario
 class Registro extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -15,17 +17,34 @@ class Registro extends React.Component {
     }
   }
 
+  //habilita a cambiar el estado.
   handleChange = event => {
     const name = event.target.name;
     this.setState({ [name]: event.target.value });
   };
 
-  return() {
+  onSubmit = event => {
+    event.preventDefault();
+    const user = this.state;
+    if (user.passSignup === user.passRepSignup) {
+      registroUser(user).then(result => {
+        alert('ESSITOO!!')
+        console.log(result);
+      }).catch(err => {
+        alert('Not today')
+        console.log(err);
+      })
+    } else {
+      return <Registro />
+    }
+  }
+
+  render() {
     return (
       <div className="d-flex flex-column justify-content-center mt-5 pt-5">
         <form className="m-auto w-50">
           <div className="form-group">
-            <label for="emailSignup">Dirección de Email</label>
+            <label htmlFor="emailSignup">Dirección de Email</label>
             {/* input email signup */}
             <input
               type="email"
@@ -36,7 +55,7 @@ class Registro extends React.Component {
             />
           </div>
           <div className="form-group">
-            <label for="nameSignup">Nombre y Apellido</label>
+            <label htmlFor="nameSignup">Nombre y Apellido</label>
             {/* input nombre signup */}
             <input
               type="input"
@@ -46,8 +65,8 @@ class Registro extends React.Component {
               placeholder="Ingrese su Nombre completo"
             />
           </div>
-          <div class="form-group">
-            <label for="passSignup">Contraseña</label>
+          <div className="form-group">
+            <label htmlFor="passSignup">Contraseña</label>
             {/* input pass signup */}
             <input
               type="password"
@@ -56,8 +75,8 @@ class Registro extends React.Component {
               placeholder="Cree una nueva Contraseña"
             />
           </div>
-          <div class="form-group">
-            <label for="passRepSignup">Repita la Contraseña</label>
+          <div className="form-group">
+            <label htmlFor="passRepSignup">Repita la Contraseña</label>
             {/* input pass signup */}
             <input
               type="password"
