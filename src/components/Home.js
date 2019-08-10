@@ -43,7 +43,7 @@ class Home extends React.Component {
               placeholder="Ingrese su Email"
             />
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label htmlFor="passLogin">Contraseña</label>
             {/* input pass login */}
             <input
