@@ -42,7 +42,7 @@ export function createTeam(team, user) {
     });
 }
 
-export function getTeam(teamId, user){
+export function getTeam(teamId){
     return axios.get(`${API}/team/${teamId}`,{
         headers: {
             "Content-Type": "application/json"
@@ -67,7 +67,7 @@ export function getMatch(matchId){
 }
 
 export function finishMatch(matchId, body){
-    return axios.put(`${API}/match/${matchId}`, body{
+    return axios.put(`${API}/match/${matchId}`, body, {
         headers: {
             "Content-Type": "application/json"
         }
