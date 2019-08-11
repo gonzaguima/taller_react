@@ -5,10 +5,10 @@ class Equipo extends React.Component {
 		super(props);
 
 		this.state = {
-			teamName: '',
-			teamFirstColor: '',
-			teamSecondColor: '',
-			teamPlayers: [{
+			name: '',
+			primaryColor: '',
+			secondaryColor: '',
+			players: [{
 				name: '',
 				lastName: '',
 				birthDate: '',
@@ -33,35 +33,35 @@ class Equipo extends React.Component {
 				<form className="m-auto w-50">
 				<div id='equipo'>{/* Datos del equipo */}
 					<div className="form-group">
-						<label htmlFor="teamName">Nombre del equipo</label>
+						<label htmlFor="name">Nombre del equipo</label>
 						{/* input email signup */}
 						<input
 							type="text"
 							className="form-control"
 							id="teamName"
-							name="teamName"
+							name="name"
 							placeholder="Ingrese nombre del equipo"
 						/>
 					</div>
 					<div className="form-group">
-						<label htmlFor="teamFirstColor">Color primario</label>
+						<label htmlFor="primaryColor">Color primario</label>
 						{/* input nombre signup */}
 						<input
 							type="input"
 							className="form-control"
 							id="teamFirstColor"
-							name="teamFirstColor"
+							name="primaryColor"
 							placeholder="Ingrese el primer color"
 						/>
 					</div>
 					<div className="form-group">
-						<label htmlFor="teamSecondColor">Color secundario</label>
+						<label htmlFor="secondaryColor">Color secundario</label>
 						{/* input pass signup */}
 						<input
 							type="text"
 							className="form-control"
 							id="teamSecondColor"
-							name="teamSecondColor"
+							name="secondaryColor"
 							placeholder="Ingrese el segundo color"
 						/>
 					</div>
@@ -78,6 +78,7 @@ class Equipo extends React.Component {
 						document.getElementById('equipo').hide;
 						document.getElementById('jugadores').show;
 					}} value='Siguiente' /> */}
+					
 					{/* boton enviar signup */}
 					<button type="submit" className="btn btn-success">
 						Siguiente ->
