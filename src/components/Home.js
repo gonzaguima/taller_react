@@ -10,8 +10,8 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      emailLogin: '',
-      passLogin: ''
+      email: '',
+      password: ''
     }
   }
 
@@ -22,8 +22,9 @@ class Home extends React.Component {
   };
 
   onSubmit = event => {
+    console.log(event)
     event.preventDefault();
-    loginUser(...this.state)
+    loginUser(this.state)
       .then(result => { console.log(result); }
       ).catch(err => { console.log(err) });
   }
@@ -39,7 +40,7 @@ class Home extends React.Component {
               type="email"
               className="form-control"
               id="emailLogin"
-              name="emailLogin"
+              name="email"
               placeholder="Ingrese su Email"
             />
           </div>
@@ -50,14 +51,14 @@ class Home extends React.Component {
               type="password"
               className="form-control"
               id="passLogin"
-              name="passLogin"
+              name="password"
               placeholder="Contraseña"
             />
           </div>
           {/* boton enviar login */}
           <button type="submit" className="btn btn-success">
             Ingresar
-        </button>
+          </button>
         </form>
 
         <div className="mr-auto ml-auto mt-4 w-50">
