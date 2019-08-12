@@ -21,26 +21,26 @@ class Registro extends React.Component {
   }
 
   //habilita a cambiar el estado.
-
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value
     });
   }
 
   registrarUsuario = event => {
-    event.preventDefault();
-    const user = this.state;
+    event.preventDefault(); //para que no recargue la pagina
+    const user = this.state; //se toma el estado
     console.log(user);
 
-    if (user.password === user.passRep) {
-      delete user.passRep;
-      registroUser(user).then(result => {
-        alert('ESSITOO!!')
+    if (user.password === user.passRep) { //se verifica que las contraseñas sean iguales
+      delete user.passRep; //se quita la repeticion de la pass
+    console.log(user);
+      registroUser(user).then(result => { //se llama al metodo en servicios
+        alert('Cuenta creada con éxito!')//si es correcto, se muestra el resultado
         console.log(result);
-      }).catch(err => {
-        alert('Not today')
+      }).catch(err => { //si es incorrecto, se muestra error
+        alert('Fallo el registro, revise sus datos');
       })
-    } else {
+    } else { // si las contaseñas son distintas, se avisa
       console.log("contraseña distinta");
       return <Registro />
     }
