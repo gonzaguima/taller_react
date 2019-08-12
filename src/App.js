@@ -8,9 +8,10 @@ import Principal from "./components/Principal";
 import Registro from "./components/Registro";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
+import Equipo from "./components/Equipos";
+import Tablas from "./components/Tablas";
 //import de router
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Equipo from "./components/Equipos";
 
 //componente principal
 class App extends React.Component {
@@ -26,6 +27,7 @@ class App extends React.Component {
             <Route exact path="/Registro" component={Registro} />
             {/* <Route exact path="/Login" component={Login} /> */}
             <Route exact path="/AgregarEquipo" component={Equipo} />
+            <Route exact path="/Tablas" component={Tablas} />
           </Switch>
           {/* footer */}
           <Footer />
