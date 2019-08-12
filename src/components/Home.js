@@ -10,49 +10,70 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: ""
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.registrarUsuario = this.loginUsuario.bind(this);
   }
 
   //habilita a cambiar el estado.
   handleChange = event => {
-    const name = event.target.name;
-    this.setState({ [name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
-  onSubmit = event => {
-    console.log(event)
+  // onSubmit = event => {
+  //   console.log(event)
+  //   event.preventDefault();
+  //   loginUser(this.state)
+  //     .then(result => { console.log(result); }
+  //     ).catch(err => { console.log(err) });
+  // }
+
+  loginUsuario = event => {
     event.preventDefault();
-    loginUser(this.state)
-      .then(result => { console.log(result); }
-      ).catch(err => { console.log(err) });
-  }
+    const user = this.state;
+    console.log(user);
+      loginUser(user)
+        .then(result => {
+          alert("logueado");
+          console.log(result);
+        })
+        .catch(err => {
+          alert("errrrrror");
+        });
+      return <Home />;
+  };
 
   render() {
     return (
       <div className="d-flex flex-column justify-content-center mt-5 pt-5">
-        <form className="m-auto w-50">
+        <form className="m-auto w-50" onSubmit={this.loginUsuario}>
           <div className="form-group">
             <label htmlFor="emailLogin">Dirección de Email</label>
             {/* input email login */}
             <input
               type="email"
               className="form-control"
-              id="emailLogin"
+              id="email"
               name="email"
               placeholder="Ingrese su Email"
+              value={this.state.email}
+              onChange={this.handleChange.bind(this)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="passLogin">Contraseña</label>
+            <label htmlFor="password">Contraseña</label>
             {/* input pass login */}
             <input
               type="password"
               className="form-control"
-              id="passLogin"
+              id="password"
               name="password"
               placeholder="Contraseña"
+              value={this.state.password}
+              onChange={this.handleChange.bind(this)}
             />
           </div>
           {/* boton enviar login */}
@@ -69,7 +90,7 @@ class Home extends React.Component {
           <Link to="/Registro">
             <button type="submit" className="btn btn-light">
               Crear cuenta
-          </button>
+            </button>
           </Link>
         </div>
       </div>
