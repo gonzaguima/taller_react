@@ -34,7 +34,6 @@ class Registro extends React.Component {
 
     if (user.password === user.passRep) {
       delete user.passRep;
-    console.log(user);
       registroUser(user).then(result => {
         alert('ESSITOO!!')
         console.log(result);

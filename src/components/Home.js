@@ -22,6 +22,7 @@ class Home extends React.Component {
   };
 
   onSubmit = event => {
+    console.log(event)
     event.preventDefault();
     loginUser(this.state)
       .then(result => { console.log(result); }
@@ -57,7 +58,7 @@ class Home extends React.Component {
           {/* boton enviar login */}
           <button type="submit" className="btn btn-success">
             Ingresar
-        </button>
+          </button>
         </form>
 
         <div className="mr-auto ml-auto mt-4 w-50">
