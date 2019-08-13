@@ -50,9 +50,10 @@ class Equipo extends React.Component {
 
   render() {
     return (
-      <div className="d-flex flex-column justify-content-center mt-5 pt-5">
+      <div className="d-flex flex-column justify-content-center mt-5 pt-5 mb-5 pb-5">
         <form className="m-auto w-50" onSubmit={this.onSubmit}>
-          <div id='equipo'>{/* Datos del equipo */}
+          <div id="equipo">
+            {/* Datos del equipo */}
             <div className="form-group">
               <label htmlFor="name">Nombre del equipo</label>
               {/* input email signup */}
@@ -86,19 +87,20 @@ class Equipo extends React.Component {
                 placeholder="Ingrese el segundo color"
               />
             </div>
-          </div>{/*fin datos de equipo*/}
+          </div>
+          {/*fin datos de equipo*/}
           <select>
-            <option selected>Jugadores</option>
+            <option value>Jugadores</option>
             {this.listJugadores(this.state.players)}
           </select>
-          <Jugadores handleAddPlayer={this.handleAddPlayer}></Jugadores>
+          <Jugadores handleAddPlayer={this.handleAddPlayer} />
 
           {/* boton enviar signup */}
           <button type="submit" className="btn btn-success">
             Confirmar equipo
           </button>
         </form>
-      </div >
+      </div>
     );
 
   }

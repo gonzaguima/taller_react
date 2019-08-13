@@ -27,7 +27,9 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/Registro" component={Registro} />
-            <Route exact path="/AgregarEquipo" component={Equipo} />
+            {this.props.user && (
+              <Route exact path="/AgregarEquipo" component={Equipo} />
+            )}
             <Route exact path="/AgregarJugadores" component={Jugadores} />
             <Route exact path="/Tablas" component={Tablas} />
             {this.props.user && (

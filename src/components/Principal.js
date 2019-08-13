@@ -1,7 +1,7 @@
 import React from "react";
 //import css
 import "../App.css";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //componente login
 class Principal extends React.Component {
@@ -9,10 +9,10 @@ class Principal extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className=" justify-content-center mt-5 pt-5">
         <h1>Gestión de campeonato</h1>
         {/* link a creacion de campeonato  */}
-        <Link to="./Campeonato" type="submit">
+        <Link to="./AgregarEquipo" type="submit">
           <button className="btn btn-primary">Crear Campeonato</button>
         </Link>
         {/* link a ingreso de resultados  */}
@@ -24,7 +24,6 @@ class Principal extends React.Component {
           <button className="btn btn-primary">Ver Clasificacion</button>
         </Link>
       </div>
-
     );
   }
 }
