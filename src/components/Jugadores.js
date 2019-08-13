@@ -14,7 +14,11 @@ class Jugadores extends React.Component {
 
   //habilita a cambiar el estado.
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    if (event.target.name === 'number') {
+      this.setState({ [event.target.name]: parseInt(event.target.value)})
+    } else {
+      this.setState({ [event.target.name]: event.target.value });
+    }
   };
 
   addPlayers = () => {
