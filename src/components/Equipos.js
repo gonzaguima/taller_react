@@ -12,14 +12,7 @@ class Equipo extends React.Component {
       name: '',
       primaryColor: '',
       secondaryColor: '',
-      players: [
-        {
-          name: '',
-          lastName: '',
-          birthDate: '',
-          number: 0
-        }
-      ] //Minimo 5, Maximo 10
+      players: [] //Minimo 5, Maximo 10
     }
   }
 
@@ -31,11 +24,9 @@ class Equipo extends React.Component {
     console.log(this.state.players)
   }
 
-  listJugadores = () => {
+  listJugadores = (list) => {
     return (
-      <option>
-        {this.state.players.map(j => j.name + ' ' + j.lastName)}
-      </option>
+      list.map(j => { return <option>{j.number}) {j.name} {j.lastName}</option> })
     );
   }
 
@@ -97,7 +88,8 @@ class Equipo extends React.Component {
             </div>
           </div>{/*fin datos de equipo*/}
           <select>
-            {this.listJugadores}
+            <option selected>Jugadores</option>
+            {this.listJugadores(this.state.players)}
           </select>
           <Jugadores handleAddPlayer={this.handleAddPlayer}></Jugadores>
 
