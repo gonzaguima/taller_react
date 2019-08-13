@@ -8,7 +8,7 @@ class Principal extends React.Component {
 
 
   render() {
-    return this.props.user ? (
+    return (
       <div>
         <h1>Gestión de campeonato</h1>
         {/* link a creacion de campeonato  */}
@@ -24,12 +24,7 @@ class Principal extends React.Component {
           <button className="btn btn-primary">Ver Clasificacion</button>
         </Link>
       </div>
-    ) : (
-      <Redirect
-        to={{
-          pathname: "/",
-        }}
-      />
+
     );
   }
 }

@@ -30,10 +30,11 @@ class App extends React.Component {
             <Route exact path="/AgregarEquipo" component={Equipo} />
             <Route exact path="/AgregarJugadores" component={Jugadores} />
             <Route exact path="/Tablas" component={Tablas} />
-            <Route exact path="/Principal" component={Principal} />
+            {this.props.user && (
+              <Route exact path="/Principal" component={Principal} />
+            )}
           </Switch>
           {/* footer */}
-
           <Footer />
         </div>
       </Router>
