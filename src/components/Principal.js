@@ -1,12 +1,14 @@
 import React from "react";
 //import css
 import "../App.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 //componente login
 class Principal extends React.Component {
+
+
   render() {
-    return (
+    return this.props.user ? (
       <div>
         <h1>Gestión de campeonato</h1>
         {/* link a creacion de campeonato  */}
@@ -22,6 +24,12 @@ class Principal extends React.Component {
           <button className="btn btn-primary">Ver Clasificacion</button>
         </Link>
       </div>
+    ) : (
+      <Redirect
+        to={{
+          pathname: "/",
+        }}
+      />
     );
   }
 }

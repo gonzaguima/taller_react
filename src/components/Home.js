@@ -33,7 +33,6 @@ class Home extends React.Component {
       loginUser(user)
         .then(result => {
           alert("logueado");
-          //console.log(result);
           this.props.dispatch(saveUser(result.data._id));
 
         })
@@ -50,7 +49,7 @@ class Home extends React.Component {
       <Redirect
       to={{
         pathname: "/Principal",
-        //state: { from: this.props.user }
+        state: { from: this.props.user }
       }}
     />) : (
       <div className="d-flex flex-column justify-content-center mt-5 pt-5">
