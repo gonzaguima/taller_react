@@ -48,9 +48,9 @@ class Equipo extends React.Component {
     } else {
       let team = {
         name: this.state.name,
-        primaryColor: this.primaryColor,
-        secondaryColor: this.secondaryColor,
-        players: [this.state.players]
+        primaryColor: this.state.primaryColor,
+        secondaryColor: this.state.secondaryColor,
+        players: this.state.players.bind()
       }
       createTeam(team, this.props.user).then = result => (
         console.log(result)
@@ -74,6 +74,7 @@ class Equipo extends React.Component {
                 className="form-control"
                 id="teamName"
                 name="name"
+                onChange={this.handleChange}
                 placeholder="Ingrese nombre del equipo"
               />
             </div>
@@ -85,6 +86,7 @@ class Equipo extends React.Component {
                 className="form-control"
                 id="teamFirstColor"
                 name="primaryColor"
+                onChange={this.handleChange}
                 placeholder="Ingrese el primer color"
               />
             </div>
@@ -96,6 +98,7 @@ class Equipo extends React.Component {
                 className="form-control"
                 id="teamSecondColor"
                 name="secondaryColor"
+                onChange={this.handleChange}
                 placeholder="Ingrese el segundo color"
               />
             </div>
