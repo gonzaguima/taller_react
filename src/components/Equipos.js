@@ -1,6 +1,7 @@
 import React from 'react';
 import { createTeam } from '../services';
 import Jugadores from './Jugadores';
+import { connect } from "react-redux";
 
 class Equipo extends React.Component {
   constructor(props) {
@@ -18,15 +19,19 @@ class Equipo extends React.Component {
 
   //agrega jugador al state
   handleAddPlayer = player => {
-    let playersMod = this.state.players;
-    playersMod.push(player);
-    this.setState(this.players = playersMod);
-    console.log(this.state.players)
+    if (this.state.players.length <= 10) {
+      let playersMod = this.state.players;
+      playersMod.push(player);
+      this.setState(this.players = playersMod);
+      console.log(this.state.players)
+    }else{
+      alert('Maximo de jugadores alcanzados (10)')
+    }
   }
 
   listJugadores = (list) => {
     return (
-      list.map(j => { return <option>{j.number}) {j.name} {j.lastName}</option> })
+      list.map(j => { return <option id={this.state.players.length}>{j.number}) {j.name} {j.lastName}</option> })
     );
   }
 
@@ -39,9 +44,15 @@ class Equipo extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.players.length < 5) {
-      alert('Tiene que tener un minimo de 5 jugadores!')
+      alert('Tiene que tener un minimo de 5 jugadores')
     } else {
-      createTeam(this.state).then = result => (
+      let team = {
+        name: this.state.name,
+        primaryColor: this.primaryColor,
+        secondaryColor: this.secondaryColor,
+        players: [this.state.players]
+      }
+      createTeam(team, this.props.user).then = result => (
         console.log(result)
       ).catch = err => (
         console.log(err)
@@ -91,7 +102,7 @@ class Equipo extends React.Component {
           </div>
           {/*fin datos de equipo*/}
           <select>
-            <option value>Jugadores</option>
+            <option value='-1'>Jugadores</option>
             {this.listJugadores(this.state.players)}
           </select>
           <Jugadores handleAddPlayer={this.handleAddPlayer} />
@@ -107,4 +118,10 @@ class Equipo extends React.Component {
   }
 }
 
-export default Equipo;
+function mapStateToProps(state) {
+  return {
+    user: state.session.user
+  }
+}
+
+export default connect(mapStateToProps)(Equipo);
