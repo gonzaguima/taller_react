@@ -20,10 +20,14 @@ class Equipo extends React.Component {
   //agrega jugador al state
   handleAddPlayer = player => {
     if (this.state.players.length <= 10) {
-      let playersMod = this.state.players;
-      playersMod.push(player);
-      this.setState(this.players = playersMod);
-      console.log(this.state.players)
+      if (player.number > 0 && player.number < 100) {
+        let playersMod = this.state.players;
+        playersMod.push(player);
+        this.setState(this.players = playersMod);
+        console.log(this.state.players)
+      }else{
+        alert('Numero de jugador tiene que ser entre 1 y 99')
+      }
     }else{
       alert('Maximo de jugadores alcanzados (10)')
     }
@@ -50,7 +54,7 @@ class Equipo extends React.Component {
         name: this.state.name,
         primaryColor: this.state.primaryColor,
         secondaryColor: this.state.secondaryColor,
-        players: this.state.players.bind()
+        players: this.state.players
       }
       createTeam(team, this.props.user).then = result => (
         console.log(result)
