@@ -1,10 +1,10 @@
 import React from "react";
-//import logo from './logo.svg';
+import { connect } from "react-redux";
+
 //import de css
 import "./App.css";
 //import de componentes
 import Nav from "./components/Nav";
-import Principal from "./components/Principal";
 import Registro from "./components/Registro";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
@@ -13,6 +13,7 @@ import Jugadores from "./components/Jugadores";
 import Tablas from "./components/Tablas";
 //import de router
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Principal from "./components/Principal";
 
 //componente principal
 class App extends React.Component {
@@ -26,12 +27,13 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/Registro" component={Registro} />
-            {/* <Route exact path="/Login" component={Login} /> */}
             <Route exact path="/AgregarEquipo" component={Equipo} />
             <Route exact path="/AgregarJugadores" component={Jugadores} />
             <Route exact path="/Tablas" component={Tablas} />
+            <Route exact path="/Principal" component={Principal} />
           </Switch>
           {/* footer */}
+
           <Footer />
         </div>
       </Router>
@@ -39,4 +41,11 @@ class App extends React.Component {
   }
 }
 //export
-export default App;
+
+function mapStateToProps(state) {
+  return {
+    user: state.session.user
+  }
+}
+
+export default connect(mapStateToProps)(App);

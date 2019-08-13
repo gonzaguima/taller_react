@@ -1,8 +1,10 @@
 import React from "react";
 //import css
 import "../App.css";
-import { Link } from "react-router-dom";
-import { loginUser } from './../services';
+import { Link, Redirect } from "react-router-dom";
+import { saveUser } from '../redux/actions/userActions';
+import { connect } from "react-redux";
+import {loginUser} from "../services";
 
 //componente Home, donde se crea un nuevo usuario
 class Home extends React.Component {
@@ -23,13 +25,6 @@ class Home extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  // onSubmit = event => {
-  //   console.log(event)
-  //   event.preventDefault();
-  //   loginUser(this.state)
-  //     .then(result => { console.log(result); }
-  //     ).catch(err => { console.log(err) });
-  // }
 
   loginUsuario = event => {
     event.preventDefault();
@@ -38,16 +33,25 @@ class Home extends React.Component {
       loginUser(user)
         .then(result => {
           alert("logueado");
-          console.log(result);
+          this.props.dispatch(saveUser(result.data._id));
+
         })
         .catch(err => {
-          alert("errrrrror");
+          alert("errrrrror ");
+          console.log(err);
         });
       return <Home />;
   };
 
   render() {
     return (
+      this.props.user ? (
+      <Redirect
+      to={{
+        pathname: "/Principal",
+        state: { from: this.props.user }
+      }}
+    />) : (
       <div className="d-flex flex-column justify-content-center mt-5 pt-5">
         <form className="m-auto w-50" onSubmit={this.loginUsuario}>
           <div className="form-group">
@@ -93,10 +97,16 @@ class Home extends React.Component {
             </button>
           </Link>
         </div>
-      </div>
+      </div>)
     );
   }
 }
 
 //export
-export default Home;
+
+function mapStateToProps(state) {
+  return {
+    user: state.session.user
+  }
+}
+export default connect(mapStateToProps)(Home);

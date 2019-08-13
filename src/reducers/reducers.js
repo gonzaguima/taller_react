@@ -1,5 +1,5 @@
 const initialState = {
-  articles: []
+  user: {}
 };
 function rootReducer(state = initialState, action) {
   return state;
