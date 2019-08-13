@@ -19,6 +19,11 @@ class Jugadores extends React.Component {
 
   addPlayers = () => {
     this.props.handleAddPlayer(this.state)
+    // this.setState(
+    //   this.name = '',
+    //   this.lastName = '',
+    //   this.birthDate = '',
+    //   this.number = '')
   }
 
   render() {
@@ -51,7 +56,7 @@ class Jugadores extends React.Component {
         </div>
         <div className='form-group'>
           <label htmlFor='number'>Numero del jugador</label>
-          <input type='text'
+          <input type='number'
           name='number'
           onChange={this.handleChange}
           className="form-control"

@@ -38,7 +38,9 @@ export function confirmChampionship(user) {
 }
 
 export function createTeam(team, user) {
-    return axios.post(`${API}/team/${user.id}`, team, {
+    console.log(team)
+    console.log(user)
+    return axios.post(`${API}/team/${user}`, team, {
         headers: {
             "Content-Type": "application/json"
         }
