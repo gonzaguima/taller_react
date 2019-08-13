@@ -1,28 +1,42 @@
 import React from 'react';
 import { createTeam } from '../services';
+import Jugadores from './Jugadores';
 
 class Equipo extends React.Component {
   constructor(props) {
     super(props);
 
+    this.addingPlayer = false;
+
     this.state = {
       name: '',
       primaryColor: '',
       secondaryColor: '',
-      players: [{
-        name: '',
-        lastName: '',
-        birthDate: '',
-        number: 0
-      }] //Minimo 5, Maximo 10
+      players: [
+        {
+          name: '',
+          lastName: '',
+          birthDate: '',
+          number: 0
+        }
+      ] //Minimo 5, Maximo 10
     }
   }
 
   //agrega jugador al state
-  addPlayer = event => {
-    let jugadores = this.state.players;
-    //verificar que no se repita el numero
-    //ver como poner varios jugadores en el state
+  handleAddPlayer = player => {
+    let playersMod = this.state.players;
+    playersMod.push(player);
+    this.setState(this.players = playersMod);
+    console.log(this.state.players)
+  }
+
+  listJugadores = () => {
+    return (
+      <option>
+        {this.state.players.map(j => j.name + ' ' + j.lastName)}
+      </option>
+    );
   }
 
   //habilita a cambiar el estado.
@@ -46,7 +60,7 @@ class Equipo extends React.Component {
   render() {
     return (
       <div className="d-flex flex-column justify-content-center mt-5 pt-5">
-        <form className="m-auto w-50">
+        <form className="m-auto w-50" onSubmit={this.onSubmit}>
           <div id='equipo'>{/* Datos del equipo */}
             <div className="form-group">
               <label htmlFor="name">Nombre del equipo</label>
@@ -82,34 +96,19 @@ class Equipo extends React.Component {
               />
             </div>
           </div>{/*fin datos de equipo*/}
-
-          <div id='jugadores'>
-            <div className='form-group'>
-              <label htmlFor='playerName'>Nombre del jugador</label>
-              <input type='text' name='name' id='playerName' className="form-control" placeholder='Ingrese nombre de su jugador' />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='playerLastName'>Apellido del jugador</label>
-              <input type='text' name='lastName' id='playerLastName' className="form-control" placeholder='Ingrese apellido de su jugador' />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='playerBirth'>Fecha de nacimiento del jugador</label>
-              <input type='date' name='birthDate' id='playerBirth' className="form-control" placeholder='Ingrese fecha de nacimiento de su jugador' />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='number'>Numero del jugador</label>
-              <input type='text' name='number' id='number' className="form-control" placeholder='Ingrese numero de su jugador' />
-            </div>
-          </div>
-          <input type='button' onClick={this.addPlayer()} className="btn btn-success" value='Agregar jugador' />
+          <select>
+            {this.listJugadores}
+          </select>
+          <Jugadores handleAddPlayer={this.handleAddPlayer}></Jugadores>
 
           {/* boton enviar signup */}
           <button type="submit" className="btn btn-success">
-            Siguiente ->
+            Confirmar equipo
           </button>
         </form>
-      </div>
+      </div >
     );
+
   }
 }
 
