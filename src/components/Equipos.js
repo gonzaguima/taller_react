@@ -36,7 +36,8 @@ class Equipo extends React.Component {
     this.setState({ [name]: event.target.value });
   };
 
-  onSubmit = () => {
+  onSubmit = (e) => {
+    e.preventDefault();
     if (this.state.players.length < 5) {
       alert('Tiene que tener un minimo de 5 jugadores!')
     } else {
