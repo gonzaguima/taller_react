@@ -27,19 +27,35 @@ class Jugadores extends React.Component {
       <div className="m-auto w-50">
         <div className='form-group'>
           <label htmlFor='playerName'>Nombre del jugador</label>
-          <input type='text' name='name' onChange={this.handleChange} className="form-control" placeholder='Ingrese nombre de su jugador' />
+          <input type='text' 
+          name='name' 
+          onChange={this.handleChange} 
+          className="form-control" 
+          placeholder='Ingrese nombre de su jugador' />
         </div>
         <div className='form-group'>
           <label htmlFor='playerLastName'>Apellido del jugador</label>
-          <input type='text' name='lastName' onChange={this.handleChange} className="form-control" placeholder='Ingrese apellido de su jugador' />
+          <input type='text' 
+          name='lastName' 
+          onChange={this.handleChange} 
+          className="form-control" 
+          placeholder='Ingrese apellido de su jugador' />
         </div>
         <div className='form-group'>
           <label htmlFor='playerBirth'>Fecha de nacimiento del jugador</label>
-          <input type='date' name='birthDate' onChange={this.handleChange} className="form-control" placeholder='Ingrese fecha de nacimiento de su jugador' />
+          <input type='date' 
+          name='birthDate' 
+          onChange={this.handleChange} 
+          className="form-control" 
+          placeholder='Ingrese fecha de nacimiento de su jugador' />
         </div>
         <div className='form-group'>
           <label htmlFor='number'>Numero del jugador</label>
-          <input type='text' name='number' onChange={this.handleChange} className="form-control" placeholder='Ingrese numero de su jugador' />
+          <input type='text' 
+          name='number' 
+          onChange={this.handleChange} 
+          className="form-control" 
+          placeholder='Ingrese numero de su jugador' />
         </div>
         <input type='button' onClick={this.addPlayers} className="btn" value='Agregar equipo' />
       </div>
