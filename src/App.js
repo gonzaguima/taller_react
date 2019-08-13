@@ -1,10 +1,10 @@
 import React from "react";
-//import logo from './logo.svg';
+import { connect } from "react-redux";
+
 //import de css
 import "./App.css";
 //import de componentes
 import Nav from "./components/Nav";
-import Principal from "./components/Principal";
 import Registro from "./components/Registro";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
@@ -17,6 +17,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 class App extends React.Component {
   render() {
     return (
+
       <Router>
         <div className="App">
           {/* barra de navegacion */}
@@ -30,11 +31,20 @@ class App extends React.Component {
             <Route exact path="/Tablas" component={Tablas} />
           </Switch>
           {/* footer */}
+
           <Footer />
         </div>
       </Router>
+
     );
   }
 }
 //export
-export default App;
+
+function mapStateToProps(state) {
+  return {
+    user: state.session.user
+  }
+}
+
+export default connect(mapStateToProps)(App);

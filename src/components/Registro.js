@@ -2,7 +2,7 @@ import React from "react";
 //import css
 import "../App.css";
 //import services
-import { registroUser } from './../services'
+import { registroUser } from "./../services";
 
 //componente registro, donde se crea un nuevo usuario
 class Registro extends React.Component {
@@ -10,11 +10,11 @@ class Registro extends React.Component {
     super(props);
 
     this.state = {
-      email: '',
-      name: '',
-      password: '',
-      passRep: ''
-    }
+      email: "",
+      name: "",
+      password: "",
+      passRep: ""
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.registrarUsuario = this.registrarUsuario.bind(this);
@@ -22,29 +22,36 @@ class Registro extends React.Component {
 
   //habilita a cambiar el estado.
   handleChange = event => {
-    this.setState({[event.target.name]: event.target.value
-    });
-  }
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
 
   registrarUsuario = event => {
     event.preventDefault(); //para que no recargue la pagina
     const user = this.state; //se toma el estado
     console.log(user);
 
-    if (user.password === user.passRep) { //se verifica que las contraseñas sean iguales
+    if (user.password === user.passRep) {
+      //se verifica que las contraseñas sean iguales
       delete user.passRep; //se quita la repeticion de la pass
-    console.log(user);
-      registroUser(user).then(result => { //se llama al metodo en servicios
-        alert('Cuenta creada con éxito!')//si es correcto, se muestra el resultado
-        console.log(result);
-      }).catch(err => { //si es incorrecto, se muestra error
-        alert('Fallo el registro, revise sus datos');
-      })
-    } else { // si las contaseñas son distintas, se avisa
+      console.log(user);
+      registroUser(user)
+        .then(result => {
+          //se llama al metodo en servicios
+          alert("Cuenta creada con éxito!"); //si es correcto, se muestra el resultado
+          console.log(result);
+
+        })
+        .catch(err => {
+          //si es incorrecto, se muestra error
+          alert("Fallo el registro, revise sus datos");
+        });
+    } else {
+      // si las contaseñas son distintas, se avisa
       console.log("contraseña distinta");
-      return <Registro />
+      return <Registro />;
     }
-  }
+  };
 
   render() {
     return (
@@ -58,7 +65,7 @@ class Registro extends React.Component {
               className="form-control"
               id="email"
               name="email"
-              value = {this.state.email}
+              value={this.state.email}
               placeholder="Ingrese su Email"
               onChange={this.handleChange.bind(this)}
             />
@@ -71,7 +78,7 @@ class Registro extends React.Component {
               className="form-control"
               id="name"
               name="name"
-              value = {this.state.name}
+              value={this.state.name}
               placeholder="Ingrese su Nombre completo"
               onChange={this.handleChange.bind(this)}
             />
@@ -84,7 +91,7 @@ class Registro extends React.Component {
               className="form-control"
               id="password"
               name="password"
-              value = {this.state.password}
+              value={this.state.password}
               placeholder="Cree una nueva Contraseña"
               onChange={this.handleChange.bind(this)}
             />
@@ -96,8 +103,8 @@ class Registro extends React.Component {
               type="password"
               className="form-control"
               id="passRep"
-              name = "passRep"
-              value = {this.state.passRep}
+              name="passRep"
+              value={this.state.passRep}
               placeholder="Ingrese de nuevo su contraseña"
               onChange={this.handleChange.bind(this)}
             />
@@ -112,4 +119,5 @@ class Registro extends React.Component {
   }
 }
 //export
+
 export default Registro;
