@@ -1,5 +1,6 @@
 export const ACTIONS = {
     LOGIN: "LOGIN",
+    CREATE: "CREATE",
     LOGOUT: "LOGOUT",
     CAMPEONATO: "CAMPEONATO",
     GOLEADOR: "GOLEADOR",

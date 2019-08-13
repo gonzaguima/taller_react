@@ -12,8 +12,11 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      email: "",
-      password: ""
+      email: "piopio@piopio.com",
+      password: "piopiopiopio",
+      userId: null,
+      campeonatoId: null,
+      confirmado: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,9 +35,12 @@ class Home extends React.Component {
     console.log(user);
       loginUser(user)
         .then(result => {
-          alert("logueado");
-          this.props.dispatch(saveUser(result.data._id));
-
+          console.log("logueado");
+          console.log(result.data);
+          user.campeonatoId = result.data.championship._id;
+          user.confirmado = result.data.championship.isConfirmed;
+          user.userId = result.data._id;
+          this.props.dispatch(saveUser({ user }));
         })
         .catch(err => {
           alert("errrrrror ");

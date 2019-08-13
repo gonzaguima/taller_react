@@ -7,6 +7,13 @@ export function saveUser(user) {
     };
 }
 
+export function createUser(user) {
+    return {
+        type: ACTIONS.CREATE,
+        user
+    };
+}
+
 export function logoutUser(id) {
     return {
         type: ACTIONS.LOGOUT,

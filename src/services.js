@@ -3,6 +3,9 @@ import axios from 'axios';
 const API = 'https://taller-frontend.herokuapp.com/api';
 
 export function loginUser(user) {
+    delete user.id;
+    delete user.campeonatoId;
+    delete user.mensaje;
     return axios.post(`${API}/user/login`, user, {
         headers: {
             "Content-Type": "application/json"
