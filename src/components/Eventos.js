@@ -2,6 +2,7 @@ import React from "react";
 //import css
 import "../App.css";
 
+
 import { connect } from "react-redux";
 import { getChampionship } from "../services";
 class Eventos extends React.Component {
@@ -9,13 +10,22 @@ class Eventos extends React.Component {
     super(props);
 
     this.state = {
-      message: null
+      message: null,
+      isHidden: true,
+      addEvent: null
     };
     this.getChampionship = this.getChampionship.bind(this);
-
   }
 
+  toggleHidden(e) {
+      const id = e.target.id;
+      console.log(id);
 
+    this.setState({
+      isHidden: !this.state.isHidden,
+      addEvent: id
+    });
+  }
 
   getChampionship = () => {
     const asd = this.props.user.user.campeonatoId;
@@ -24,9 +34,8 @@ class Eventos extends React.Component {
       .then(result => {
         this.props.user.user.partidos = result.data;
         //this.state.message = result.data;
-        this.setState({message: result.data});
+        this.setState({ message: result.data });
         console.log(this.state.message);
-
       })
       .catch(err => {
         alert("OOPS");
@@ -36,10 +45,14 @@ class Eventos extends React.Component {
   };
 
 
+
   render() {
     getChampionship(this.props.user.user.campeonatoId);
+
+      const Child = () => <div >Hello, World! {this.state.addEvent}</div>;
     return (
       <div className=" justify-content-center mt-5 pt-5">
+        {!this.state.isHidden && <Child />}
         <button
           className="btn btn-primary"
           onClick={this.getChampionship.bind(this)}
@@ -57,12 +70,18 @@ class Eventos extends React.Component {
             </thead>
             <tbody>
               {this.state.message.map(message => (
-                <tr key={message._id} scope="row">
+                <tr key={message._id}>
                   <td>{message.team1.id}</td>
                   <td>{message.team2.id}</td>
                   <td>
                     {message.events.length <= 0 ? (
-                      <button className="btn btn-success">Agregar</button>
+                      <button
+                        id={message._id}
+                        className="btn btn-success"
+                        onClick={this.toggleHidden.bind(this)}
+                      >
+                        Agregar
+                      </button>
                     ) : (
                       message.events.length
                     )}
