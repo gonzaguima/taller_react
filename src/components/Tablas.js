@@ -5,6 +5,7 @@ import TablaGoleadores from './TablaGoleadores';
 import TablaFairPlay from './TablaFairPlay';
 import { getChampionship } from '../services';
 import { connect } from "react-redux";
+import { isNull } from 'util';
 
 class Tablas extends React.Component {
   constructor(props) {
@@ -40,12 +41,14 @@ class Tablas extends React.Component {
   }
 
   render() {
+    if (isNull(this.state.message)) {
+      {this.cargarPartidos()}
+    }
     return (
       <div className=" justify-content-center mt-5 pt-5">
-        <button onClick={this.cargarPartidos} className='btn'>Dale click prro</button>
-        <TablaCampeonato partidos={this.state.message}></TablaCampeonato>
+        {/* <TablaCampeonato partidos={this.state.message}></TablaCampeonato> */}
         <TablaGoleadores partidos={this.state.message}></TablaGoleadores>
-        <TablaFairPlay partidos={this.state.message}></TablaFairPlay>
+        {/* <TablaFairPlay partidos={this.state.message}></TablaFairPlay> */}
       </div>
     );
   }

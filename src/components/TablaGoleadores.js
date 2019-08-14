@@ -15,14 +15,27 @@ class TablaGoleadores extends React.Component {
     }
   }
 
+  getGoleador = g => {
+    for (let i = 0; i < this.goleadores.length; i++) {
+      const e = this.goleadores[i];
+      if (g.playerId === e.id) {
+        return e;
+      }
+    }
+  }
+
   loadTabla = () => {
     this.props.partidos.forEach(p => {
       p.events.forEach(e => {
+        console.log(e)
         if (e.type === 'GOAL') {
-          const [id, goles] = this.goleadores.find(i => i.id === e.playerId)
+          // const [id, goles] = this.goleadores.find(i => i.id === e.playerId);
+
+          const [id, goles] = this.getGoleador(e);
+
           let mod;
           if (id) {
-            mod = this.goleadores.filter(index => index.id !== id)
+            mod = this.goleadores.filter(index => index.id !== id);
             mod.push({
               id: id,
               name: '',
@@ -47,10 +60,21 @@ class TablaGoleadores extends React.Component {
     console.log(this.goleadores)
   }
 
+  listGoleadores = () => {
+    return (
+      this.goleadores.map(e => {
+        return <tr>
+          <td>{e.name}</td>
+          <td>{e.goles}</td>
+        </tr>
+      })
+    );
+  }
+
   render() {
     return (
       <table className='table-striped'>
-        <button onClick={this.loadTabla}>Tabla Goleadores</button> 
+        <button onClick={this.loadTabla}>Tabla Goleadores</button>
         <thead>
           <tr>
             <th>Jugador</th>
@@ -58,15 +82,11 @@ class TablaGoleadores extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {/*this.goleadores.map(e => {
-            <tr>
-              <td>{e.name}</td>
-              <td>{e.goles}</td>
-            </tr>
-          })*/}
+          {this.listGoleadores}
         </tbody>
       </table>
     )
   }
 }
+
 export default TablaGoleadores
