@@ -48,7 +48,7 @@ class Tablas extends React.Component {
       <div className=" justify-content-center mt-5 pt-5">
         {/* <TablaCampeonato partidos={this.state.message}></TablaCampeonato> */}
         <TablaGoleadores partidos={this.state.message}></TablaGoleadores>
-        {/* <TablaFairPlay partidos={this.state.message}></TablaFairPlay> */}
+        <TablaFairPlay partidos={this.state.message}></TablaFairPlay>
       </div>
     );
   }

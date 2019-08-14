@@ -4,11 +4,7 @@ class TablaGoleadores extends React.Component {
   constructor(props) {
     super(props);
 
-    this.goleadores = {
-      id: 0,
-      name: '',
-      goles: 0
-    }
+    this.goleadores = []
 
     this.state = {
       message: null
@@ -22,34 +18,36 @@ class TablaGoleadores extends React.Component {
         return e;
       }
     }
+    return { id: false, goles: 0 };
   }
 
   loadTabla = () => {
     this.props.partidos.forEach(p => {
       p.events.forEach(e => {
-        console.log(e)
         if (e.type === 'GOAL') {
+          console.log(e)
           // const [id, goles] = this.goleadores.find(i => i.id === e.playerId);
 
-          const [id, goles] = this.getGoleador(e);
+          const { id, goles } = this.getGoleador(e);
 
-          let mod;
+          let mod = this.goleadores;
           if (id) {
-            mod = this.goleadores.filter(index => index.id !== id);
-            mod.push({
+            mod = mod.filter(index => index.id !== id);
+            let g = {
               id: id,
               name: '',
               goles: goles + 1
-            })
+            }
+            mod.push(g);
           } else {
-            mod = this.goleadores;
-            mod.push({
+            let g = {
               id: e.playerId,
               name: '',
               goles: 1
-            })
+            }
+            mod.push(g);
           }
-          this.goleadores = mod
+          this.goleadores = mod;
         }
       });
     });
@@ -61,30 +59,20 @@ class TablaGoleadores extends React.Component {
   }
 
   listGoleadores = () => {
+    console.log(this.goleadores)
     return (
       this.goleadores.map(e => {
-        return <tr>
-          <td>{e.name}</td>
-          <td>{e.goles}</td>
-        </tr>
+        return <p>{e.name}{e.goles}</p>
       })
     );
   }
 
   render() {
     return (
-      <table className='table-striped'>
-        <button onClick={this.loadTabla}>Tabla Goleadores</button>
-        <thead>
-          <tr>
-            <th>Jugador</th>
-            <th>Goles</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.listGoleadores}
-        </tbody>
-      </table>
+      <div className='d-flex flex-column justify-content-center mt-5 pt-5'>
+        <button onClick={this.loadTabla} className='btn'>Tabla Goleadores</button>
+        {this.listGoleadores}
+      </div>
     )
   }
 }
