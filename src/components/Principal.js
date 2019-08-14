@@ -50,7 +50,7 @@ class Principal extends React.Component {
         </Link>)
         }
         {/* link a ver clasificacion  */}
-        <Link to="./Clasificacion" type="submit">
+        <Link to="./Tablas" type="submit">
           <button className="btn btn-primary">Ver Clasificacion</button>
         </Link>
         <br />
