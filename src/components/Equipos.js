@@ -2,7 +2,7 @@ import React from 'react';
 import { createTeam } from '../services';
 import Jugadores from './Jugadores';
 import { connect } from "react-redux";
-
+import {  Redirect } from "react-router-dom";
 class Equipo extends React.Component {
   constructor(props) {
     super(props);
@@ -53,11 +53,12 @@ class Equipo extends React.Component {
       createTeam(this.state, this.props.user).then(result => {
         console.log(result);
         alert(this.state.name + ' ha sido agregado con exito.');
-        //Quiero poner un redirect principal aca
+
       }).catch(err => {
         console.log(err)
       });
     }
+     this.props.history.push("/");
   }
 
   render() {

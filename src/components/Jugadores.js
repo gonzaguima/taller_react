@@ -66,7 +66,7 @@ class Jugadores extends React.Component {
           className="form-control"
           placeholder='Ingrese numero de su jugador' />
         </div>
-        <input type='button' onClick={this.addPlayers} className="btn" value='Agregar equipo' />
+        <input type='button' onClick={this.addPlayers} className="btn" value='Agregar jugador' />
       </div>
       </div>
     );

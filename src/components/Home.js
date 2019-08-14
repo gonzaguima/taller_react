@@ -12,8 +12,8 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      email: "piopio@piopio.com",
-      password: "piopiopiopio",
+      email: "guau@guau.com",
+      password: "guauguau",
       userId: null,
       campeonatoId: null,
       confirmado: false,

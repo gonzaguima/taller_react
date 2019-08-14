@@ -36,9 +36,11 @@ class Principal extends React.Component {
       <div className=" justify-content-center mt-5 pt-5">
         <h1>Gestión de campeonato</h1>
         {/* link a creacion de campeonato  */}
+        {!this.props.user.user.confirmado && (
         <Link to="./AgregarEquipo" type="submit">
           <button className="btn btn-primary">Crear Campeonato</button>
         </Link>
+        ) }
         {/* link a ingreso de resultados  */}
         <Link to="./Eventos" type="submit">
           <button className="btn btn-primary">Ingresar resultados</button>
