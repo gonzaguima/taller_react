@@ -1,9 +1,9 @@
 import React from "react";
 //import css
 import "../App.css";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getChampionship } from "../services";
+
 class Eventos extends React.Component {
   constructor(props) {
     super(props);
@@ -11,45 +11,40 @@ class Eventos extends React.Component {
     this.state = {
       message: null
     };
-    this.getChampionship = this.getChampionship.bind(this);
+    //this.getChampionship = this.getChampionship;
 
   }
 
-
-
-  getChampionship = () => {
-    const asd = this.props.user.user.campeonatoId;
-    console.log(asd);
-    getChampionship(asd)
-      .then(result => {
-        this.props.user.user.partidos = result.data;
-        this.state.message = result.data;
-        console.log(this.state.message);
-
+  loadTableMatch = () => {
+    let cId = this.props.user.user.campeonatoId;
+    getChampionship(cId).then(result => {
+      result.data.map(m => {
+        return <tr>
+          <td>{m.team1.id}</td>
+          <td>{m.team2.id}</td>
+        </tr>
       })
-      .catch(err => {
-        alert("OOPS");
-        console.log(err);
-      });
-    return <Eventos />;
-  };
-
+    }).catch(err => {
+      alert('Opss')
+    })
+  }
 
   render() {
-    getChampionship(this.props.user.user.campeonatoId);
     return (
       <div className=" justify-content-center mt-5 pt-5">
-        <button
-          className="btn btn-primary"
-          onClick={this.getChampionship.bind(this)}
-        >
-          Ver partidos
-        </button>
-        <ul>hola</ul>
+        <table className='table-striped'>
+          <thead><tr>
+            <th>Local</th>
+            <th>Visitante</th>
+          </tr></thead>
+          <tbody>{this.loadTableMatch()}</tbody>
+
+        </table>
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     user: state.session.user
