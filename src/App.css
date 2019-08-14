@@ -65,6 +65,7 @@ body {
   bottom: 0;
   width: 100%;
   text-align: center;
+  height: 50px;
   opacity: 0.8;
 }
 
@@ -72,6 +73,7 @@ label {
   color: rgb(1, 1, 1);
   font-size: 1.5em;
 }
+
 
 body {
   background-image: url("img/bg.jpg");

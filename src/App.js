@@ -26,7 +26,9 @@ class App extends React.Component {
           <Nav />
           {/* links */}
           <Switch>
+
             <Route exact path="/" component={Home} />
+
             <Route exact path="/Registro" component={Registro} />
             {this.props.user && (
               <Route exact path="/AgregarEquipo" component={Equipo} />

@@ -47,11 +47,31 @@ class Eventos extends React.Component {
           Ver partidos
         </button>
         {this.state.message && (
-         <div>
-          {this.state.message.map((message, index) => (
-            <p key={index}>{message._id}</p>
-          ))}
-        </div>
+          <table className="table table-dark mb-5 mt-5">
+            <thead>
+              <tr>
+                <th scope="col">Equipo 1</th>
+                <th scope="col">Equipo 2</th>
+                <th scope="col">Eventos</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.message.map(message => (
+                <tr key={message._id} scope="row">
+                  <td>{message.team1.id}</td>
+                  <td>{message.team2.id}</td>
+                  <td>
+                    {message.events.length <= 0 ? (
+                      <button className="btn btn-success">Agregar</button>
+                    ) : (
+                      message.events.length
+                    )}
+                  </td>
+                </tr>
+                // <p key={index}>{message._id}</p>
+              ))}
+            </tbody>
+          </table>
         )}
       </div>
     );
