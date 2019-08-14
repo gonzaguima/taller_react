@@ -5,7 +5,7 @@ const API = 'https://taller-frontend.herokuapp.com/api';
 export function loginUser(user) {
     delete user.id;
     delete user.campeonatoId;
-    delete user.mensaje;
+    delete user.partidos;
     return axios.post(`${API}/user/login`, user, {
         headers: {
             "Content-Type": "application/json"
@@ -56,11 +56,12 @@ export function getTeam(teamId){
 }
 
 export function getChampionship(championshipId){
-    return axios.get(`${API}/team/getAllByChampionshipId/${championshipId}`,{
+    return axios.get(`${API}/match/getAllByChampionshipId/${championshipId}`,{
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         }
-    });
+      }
+    );
 }
 
 export function getMatch(matchId){

@@ -16,7 +16,8 @@ class Home extends React.Component {
       password: "piopiopiopio",
       userId: null,
       campeonatoId: null,
-      confirmado: false
+      confirmado: false,
+      partidos: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,6 +41,7 @@ class Home extends React.Component {
           user.campeonatoId = result.data.championship._id;
           user.confirmado = result.data.championship.isConfirmed;
           user.userId = result.data._id;
+          user.partidos = null;
           this.props.dispatch(saveUser({ user }));
         })
         .catch(err => {

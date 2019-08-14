@@ -31,7 +31,6 @@ class Principal extends React.Component {
   }
 
   render() {
-    console.log(this.props.user.user);
 
     return (
       <div className=" justify-content-center mt-5 pt-5">
@@ -41,7 +40,7 @@ class Principal extends React.Component {
           <button className="btn btn-primary">Crear Campeonato</button>
         </Link>
         {/* link a ingreso de resultados  */}
-        <Link to="./Resultados" type="submit">
+        <Link to="./Eventos" type="submit">
           <button className="btn btn-primary">Ingresar resultados</button>
         </Link>
         {/* link a ver clasificacion  */}

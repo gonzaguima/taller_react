@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Equipo from "./components/Equipos";
 import Jugadores from "./components/Jugadores";
 import Tablas from "./components/Tablas";
+import Eventos from "./components/Eventos";
 //import de router
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Principal from "./components/Principal";
@@ -31,6 +32,7 @@ class App extends React.Component {
               <Route exact path="/AgregarEquipo" component={Equipo} />
             )}
             <Route exact path="/AgregarJugadores" component={Jugadores} />
+            <Route exact path="/Eventos" component={Eventos} />
             <Route exact path="/Tablas" component={Tablas} />
             {this.props.user && (
               <Route exact path="/Principal" component={Principal} />
