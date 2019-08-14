@@ -1,5 +1,22 @@
+import React from 'react'
 
-export default function tablaCampeonato(championship){
-    /* ver como llegan los datos de championship
-    para armar la tabla */
+class TablaCampeonato extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      message: null
+    }
+  }
+
+  render() {
+    return (
+      <div className='d-flex flex-column justify-content-center mt-5 pt-5'>
+        <button onClick={this.loadTabla} className='btn'>Tabla Campeonato</button>
+        {this.listGoleadores}
+      </div>
+    );
+  }
 }
+
+export default TablaCampeonato;

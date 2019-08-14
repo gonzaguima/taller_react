@@ -1,52 +1,63 @@
 import React from 'react';
-import { ACTIONS } from './../constants'
-import tablaCampeonato from './TablaCampeonato';
-import tablaGoleador from './TablaGoleadores';
-import tablaFairPlay from './TablaFairPlay'
+// import { ACTIONS } from './../constants'
+import TablaCampeonato from './TablaCampeonato';
+import TablaGoleadores from './TablaGoleadores';
+import TablaFairPlay from './TablaFairPlay';
 import { getChampionship } from '../services';
+import { connect } from "react-redux";
+import { isNull } from 'util';
 
 class Tablas extends React.Component {
-  selectChange = event => {
-    switch (event.tarjet.value) {
-      case ACTIONS.CAMPEONATO:
-        getChampionship(/* pasar id campeonato */).then(result => {
-          tablaCampeonato(result);
-        }).catch(err => {
-          alert('Algo salio mal :(')
-        })
+  constructor(props) {
+    super(props);
 
-        break;
-      case ACTIONS.GOLEADOR:
-        getChampionship(/* pasar id campeonato */).then(result => {
-          tablaGoleador(result);
-        }).catch(err => {
-          alert('Algo salio mal :(')
-        })
-
-        break;
-      case ACTIONS.FAIRPLAY:
-        getChampionship(/* pasar id campeonato */).then(result => {
-          tablaFairPlay(result);
-        }).catch(err => {
-          alert('Algo salio mal :(')
-        })
-
-        break;
-      default:
-        break;
+    this.state = {
+      message: null
     }
   }
 
+  // selectChange = event => {
+  //   switch (event.tarjet.value) {
+  //     case ACTIONS.CAMPEONATO:
+
+  //       break;
+  //     case ACTIONS.GOLEADOR:
+
+  //       break;
+  //     case ACTIONS.FAIRPLAY:
+
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
+
+  cargarPartidos = () => {
+    getChampionship(this.props.user.user.campeonatoId).then(result => {
+      console.log(result)
+      this.setState({ message: result.data })
+    })
+    console.log(this.state.message)
+  }
+
   render() {
+    if (isNull(this.state.message)) {
+      {this.cargarPartidos()}
+    }
     return (
-      <select className='' onChange={this.selectChange}>
-        <option selected value='0' >Seleccione una opcion</option>
-        <option value={ACTIONS.CAMPEONATO}>Tabla del campeonato</option>
-        <option value={ACTIONS.GOLEADOR}>Tabla de goleador</option>
-        <option value={ACTIONS.FAIRPLAY}>Tabla de Fair Play</option>
-      </select>
+      <div className=" justify-content-center mt-5 pt-5">
+        {/* <TablaCampeonato partidos={this.state.message}></TablaCampeonato> */}
+        <TablaGoleadores partidos={this.state.message}></TablaGoleadores>
+        <TablaFairPlay partidos={this.state.message}></TablaFairPlay>
+      </div>
     );
   }
 }
 
-export default Tablas;
+function mapStateToProps(state) {
+  return {
+    user: state.session.user
+  };
+}
+
+export default connect(mapStateToProps)(Tablas);
