@@ -25,10 +25,10 @@ class Equipo extends React.Component {
         playersMod.push(player);
         this.setState(this.players = playersMod);
         console.log(this.state.players)
-      }else{
+      } else {
         alert('Numero de jugador tiene que ser entre 1 y 99')
       }
-    }else{
+    } else {
       alert('Maximo de jugadores alcanzados (10)')
     }
   }
@@ -50,17 +50,13 @@ class Equipo extends React.Component {
     if (this.state.players.length < 5) {
       alert('Tiene que tener un minimo de 5 jugadores')
     } else {
-      let team = {
-        name: this.state.name,
-        primaryColor: this.state.primaryColor,
-        secondaryColor: this.state.secondaryColor,
-        players: this.state.players
-      }
-      createTeam(team, this.props.user).then = result => (
-        console.log(result)
-      ).catch = err => (
+      createTeam(this.state, this.props.user).then(result => {
+        console.log(result);
+        alert(this.state.name + ' ha sido agregado con exito.');
+        //Quiero poner un redirect principal aca
+      }).catch(err => {
         console.log(err)
-      );
+      });
     }
   }
 
