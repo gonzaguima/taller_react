@@ -1,7 +1,7 @@
 import React from "react";
 //import css
 import "../App.css";
-import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { getChampionship } from "../services";
 class Eventos extends React.Component {
@@ -23,7 +23,8 @@ class Eventos extends React.Component {
     getChampionship(asd)
       .then(result => {
         this.props.user.user.partidos = result.data;
-        this.state.message = result.data;
+        //this.state.message = result.data;
+        this.setState({message: result.data});
         console.log(this.state.message);
 
       })
@@ -45,7 +46,13 @@ class Eventos extends React.Component {
         >
           Ver partidos
         </button>
-        <ul>hola</ul>
+        {this.state.message && (
+         <div>
+          {this.state.message.map((message, index) => (
+            <p key={index}>{message._id}</p>
+          ))}
+        </div>
+        )}
       </div>
     );
   }

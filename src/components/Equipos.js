@@ -2,7 +2,7 @@ import React from 'react';
 import { createTeam } from '../services';
 import Jugadores from './Jugadores';
 import { connect } from "react-redux";
-import {  Redirect } from "react-router-dom";
+
 class Equipo extends React.Component {
   constructor(props) {
     super(props);

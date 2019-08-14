@@ -32,7 +32,9 @@ class App extends React.Component {
               <Route exact path="/AgregarEquipo" component={Equipo} />
             )}
             <Route exact path="/AgregarJugadores" component={Jugadores} />
-            <Route exact path="/Eventos" component={Eventos} />
+            {this.props.user && (
+              <Route exact path="/Eventos" component={Eventos} />
+            )}
             <Route exact path="/Tablas" component={Tablas} />
             {this.props.user && (
               <Route exact path="/Principal" component={Principal} />

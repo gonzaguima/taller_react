@@ -21,7 +21,9 @@ class Principal extends React.Component {
     confirmChampionship(id)
       .then(result => {
         this.props.user.user.confirmado = true;
+        this.setState({ message: result.data });
         console.log(result.data);
+        console.log(this.state.message);
       })
       .catch(err => {
         alert("La cantidad de equipos es menor a 5");
@@ -42,9 +44,11 @@ class Principal extends React.Component {
         </Link>
         ) }
         {/* link a ingreso de resultados  */}
+        {this.props.user.user.confirmado && (
         <Link to="./Eventos" type="submit">
           <button className="btn btn-primary">Ingresar resultados</button>
-        </Link>
+        </Link>)
+        }
         {/* link a ver clasificacion  */}
         <Link to="./Clasificacion" type="submit">
           <button className="btn btn-primary">Ver Clasificacion</button>
