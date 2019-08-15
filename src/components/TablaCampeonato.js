@@ -89,8 +89,7 @@ class TablaCampeonato extends React.Component {
               gDif: (t1Goles - t2Goles)
             }
           }
-          if (modT1)
-            m.push(modT1)
+          m.push(modT1)
           this.setState({ campeonato: m })
 
           let modT2 = this.campeonato.find(team => team.id === t2._id)
@@ -112,8 +111,7 @@ class TablaCampeonato extends React.Component {
               gDif: (t2Goles - t1Goles)
             }
           }
-          if (modT2)
-            m.push(modT2)
+          m.push(modT2)
           this.setState({ campeonato: m })
         });
       }
