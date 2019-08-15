@@ -62,7 +62,8 @@ class TablaFairPlay extends React.Component {
               mod.push(g)
             }
           }
-          this.fairplay = mod;
+
+          this.setState({ fairplay: mod});
         }
       });
     });
@@ -83,7 +84,10 @@ class TablaFairPlay extends React.Component {
     return (
       <div className='d-flex flex-column justify-content-center mt-5 pt-5'>
         <button onClick={this.loadTabla} className='btn'>Tabla FairPlay</button>
-        {this.listFairPlay(this.fairplay)}
+        {/* {this.listFairPlay(this.fairplay)} */}
+        {this.fairplay &&
+        this.fairplay.map( f => <p className="text-white bg-dark">Id {f.id} Puntos {f.points}</p>)
+        }
       </div>
     );
   }

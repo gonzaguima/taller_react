@@ -37,7 +37,9 @@ class App extends React.Component {
             {this.props.user && (
               <Route exact path="/Eventos" component={Eventos} />
             )}
+            {this.props.user && (
             <Route exact path="/Tablas" component={Tablas} />
+            )}
             {this.props.user && (
               <Route exact path="/Principal" component={Principal} />
             )}

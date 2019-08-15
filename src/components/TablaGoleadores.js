@@ -47,7 +47,8 @@ class TablaGoleadores extends React.Component {
             }
             mod.push(g);
           }
-          this.goleadores = mod;
+          //this.goleadores = mod;
+          this.setState({goleadores: mod})
         }
       });
     });
@@ -62,16 +63,20 @@ class TablaGoleadores extends React.Component {
     console.log(this.goleadores)
     return (
       this.goleadores.map(e => {
-        return <p>{e.name}{e.goles}</p>
+        return <p> ¨Nombre¨{e.name} ¨Goles"{e.goles}</p>
       })
     );
   }
+
 
   render() {
     return (
       <div className='d-flex flex-column justify-content-center mt-5 pt-5'>
         <button onClick={this.loadTabla} className='btn'>Tabla Goleadores</button>
-        {this.listGoleadores}
+
+        {this.goleadores &&
+        this.goleadores.map( g => <p className="text-white bg-dark">Id {g.id} Goles {g.goles}</p>)
+        }
       </div>
     )
   }
